@@ -1,4 +1,4 @@
-name: Pruebas automatizadas - Java
+name: Resta
 
 on:
   push:
@@ -14,10 +14,10 @@ jobs:
     - name: Descargar código
       uses: actions/checkout@v4
       
-    - name: Configurar JDK 21
+    - name: Configurar JDK 17
       uses: actions/setup-java@v4
       with:
-        java-version: '21'
+        java-version: '17'
         distribution: 'temurin'
         cache: maven
         
