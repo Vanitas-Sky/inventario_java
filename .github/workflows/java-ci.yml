@@ -1,28 +1,25 @@
-name: Construcción y pruebas - Inventario Java
+name: Pruebas automatizadas - Java
 
 on:
   push:
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
-
-permissions:
-  contents: read
+    branches: [ "main" ]
 
 jobs:
-  construir:
-    runs-on: ubuntu-24.04
-    
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Descargar Código
-        uses: actions/checkout@v5
-
-      - name: Configurar Java 21
-        uses: actions/setup-java@v5
-        with:
-          distribution: temurin
-          java-version: '21'
-          cache: maven
-
-      - name: Compilar, probar y empaquetar
-        run: mvn -batch-mode clean package
+    - name: Descargar código
+      uses: actions/checkout@v4
+      
+    - name: Configurar JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+        
+    - name: Compilar y probar con Maven
+      run: mvn -B package --file pom.xml
